@@ -1,94 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
+import 'package:price_bitcoin/BitcoinPage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  String _preco = "0";
-
-  void _recuperarPreco() async {
-    String url = "https://blockchain.info/ticker";
-
-    http.Response response = await http.get(Uri.parse(url));
-
-    Map<String, dynamic> retorno = json.decode(response.body);
-
-    setState(() {
-      _preco = retorno["BRL"]["buy"].toString();
-    });
-  }
-
-  void _limparResultado() {
-    setState(() {
-      _preco = "0";
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(32),
-        child: Center(
+        padding: const EdgeInsets.all(5),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.asset("imagens/bitcoin.png"),
-              Padding(
-                padding: EdgeInsets.only(top: 30, bottom: 30),
-                child: Text(
-                  "R\$ " + _preco,
-                  style: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Image.asset("imagens/logo2.png", height: 350, width: 350,),
+              const Text(
+                "Valores de cada moeda digital",
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const BitcoinPage()));
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset("imagens/Bitcoin.png", width: 80, height: 80,),
+                            const Text(
+                              "Bitcoin",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        )
                     ),
-                    onPressed: () {
-                      _recuperarPreco();
-                    },
-                    child: const Text(
-                      "Atualizar",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                    GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const BitcoinPage()));
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset("imagens/Ethereum.png", width: 80, height: 80,),
+                            const Text(
+                              "Ethereum",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        )
                     ),
-                  ),
-                  SizedBox(width: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
-                    ),
-                    onPressed: () {
-                      _limparResultado();
-                    },
-                    child: const Text(
-                      "Limpar",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              )
+                  ],
+                ) ,
+              ),
             ],
           ),
         ),

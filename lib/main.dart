@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:price_bitcoin/BitcoinPage.dart';
 import 'package:price_bitcoin/HomePage.dart';
 
 void main (){
