@@ -34,6 +34,9 @@ class _BitcoinPageState extends State<BitcoinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Container(
         padding: EdgeInsets.all(32),
         child: Center(

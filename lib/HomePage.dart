@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:price_bitcoin/BitcoinPage.dart';
+import 'package:price_bitcoin/EthereumPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
+                    //Bitcoin
                     GestureDetector(
                         onTap: (){
                           Navigator.push(
@@ -53,11 +55,12 @@ class _HomePageState extends State<HomePage> {
                           ],
                         )
                     ),
+                    //Ethereum
                     GestureDetector(
                         onTap: (){
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const BitcoinPage()));
+                              MaterialPageRoute(builder: (context) => const EthereumPage()));
                         },
                         child: Column(
                           children: <Widget>[
